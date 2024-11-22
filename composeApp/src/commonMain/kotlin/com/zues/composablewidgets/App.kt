@@ -25,9 +25,30 @@ fun App() {
             Button(onClick = { showContent = !showContent }) {
                 Text("Click me!")
             }
+            AnimatedVisibility(!showContent) {
+                Column(
+                    Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text("Zeeshan Compose Calender View")
+
+                    ZuesCalenderView(selectionType = SelectionType.RangeSelection,
+                        selectedDate = null,
+                        selectedStartDate = null,
+                        selectedEndDate = null,
+                        onDateSelected = {},
+                        onDateRangeSelected = { _, _ ->
+                        },
+                        onReset = {}
+                    )
+                }
+            }
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Compose: $greeting")
                 }
